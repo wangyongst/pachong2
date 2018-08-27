@@ -1,0 +1,46 @@
+group 'com.myweb'
+version '1.0-SNAPSHOT'
+
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'maven'
+
+apply plugin: 'application'
+mainClassName = 'com.myweb.Start'
+
+
+repositories {
+    maven {
+        url "http://maven.aliyun.com/nexus/content/groups/public/"
+    }
+    mavenLocal()
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'io.spring.gradle:dependency-management-plugin:1.0.0.RELEASE'
+    }
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+dependencyManagement {
+    imports {
+        mavenBom 'io.spring.platform:platform-bom:Brussels-SR7'
+    }
+}
+
+[compileJava, compileTestJava, javadoc]*.options*.encoding = "utf-8"
+
+dependencies {
+
+    compile('org.seleniumhq.selenium:selenium-htmlunit-driver:2.52.0')
+}
+
+
