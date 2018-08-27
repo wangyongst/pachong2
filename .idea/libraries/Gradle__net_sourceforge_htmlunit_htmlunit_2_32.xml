@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: net.sourceforge.htmlunit:htmlunit:2.32">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/net.sourceforge.htmlunit/htmlunit/2.32/e41659aed327e1d71a717de7b5cf98bd07427252/htmlunit-2.32.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/net.sourceforge.htmlunit/htmlunit/2.32/c8c270764945f93094530b656943f40397af2791/htmlunit-2.32-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
