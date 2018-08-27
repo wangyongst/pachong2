@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html>
+<head>
+    <title>
+        Check Client Configuration
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="css/pagestyle.css" type="text/css"/>
+    <link rel="stylesheet" href="css/typographyEN.css" type="text/css"/>
+    <script src="js/ccc.js">
+    </script>
+    <script>
+        //<![CDATA[
+
+        var agt = navigator.userAgent;
+
+        //]]>
+    </script>
+</head>
+<body onload="init()">
+<div id="ccc" style="text-align: center; margin: 80px auto; width: 500px; padding: 50px; border: solid #000000 1px; border-radius: 15px; display: none;">
+    <img src="images/en_US/animated-loading.gif" width="90" height="90" align="absmiddle"/>
+    <br/>
+    <span id="loadingMsg" style="font-weight:bold;">
+        檢查用戶設定，請稍候 ...
+      </span>
+    <div id="appletArea">
+    </div>
+</div>
+<div id="pagePanel" style="">
+    <div id="topPanel">
+        <div id="logobar">
+            <div id="logobarcolL">
+                <img src="images/head_banner_govhk.gif" align="middle"/>
+            </div>
+        </div>
+        <div id="loginbar">
+        </div>
+    </div>
+    <div id="midPanel">
+        <div id="msgArea" class="errormessage">
+            <div>
+                <p>
+                    <strong>
+                        注意：
+                    </strong>
+                </p>
+            </div>
+            <div>
+                <ul>
+                    <li>
+                        您現時使用的電腦操作系統和瀏覽器組合，尚未經過「稅務易」系統的全面測試。
+                    </li>
+                </ul>
+            </div>
+            <div id="configTable">
+                <blockquote style="color:black;">
+                    <div id="configTableTitle">
+                        以下是你的系統設定及「稅務易」系統已測試及支援的設定：
+                    </div>
+                    <table class="errormessage" style="border-style:none; border-width:0px; width:90%; color:black; border-spacing: 4px;">
+                        <tbody>
+                        <tr>
+                            <td nowrap="">
+                                 
+                            </td>
+                            <td nowrap="">
+                                <div id="configTableClientConfig">
+                                    <b>
+                                        現有設定
+                                    </b>
+                                </div>
+                            </td>
+                            <td>
+                                <div id="configTableTestedConfig">
+                                    <b>
+                                        「稅務易」系統已測試的設定
+                                    </b>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td nowrap="">
+                                <div id="configTableOSName">
+                                    操作系統:
+                                </div>
+                            </td>
+                            <td nowrap="">
+                                <div id="configTableClientOSName">
+                                    Windows
+                                </div>
+                            </td>
+                            <td>
+                                <div id="configTableTestedOSName">
+                                    Windows, Linux and macOS (Mac OS X)
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td nowrap="">
+                                <div id="configTableOSVer">
+                                    操作系統版本:
+                                </div>
+                            </td>
+                            <td nowrap="">
+                                <div id="configTableClientOSVer">
+                                    Windows 7
+                                </div>
+                            </td>
+                            <td>
+                                <div id="configTableTestedOSVer">
+                                    Windows 10/8.1/8/7, Linux and macOS (Mac OS X)
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td nowrap="">
+                                <div id="configTableBrowserName">
+                                    瀏覽器:
+                                </div>
+                            </td>
+                            <td nowrap="">
+                                <div id="configTableClientBrowserName">
+                                    Chrome
+                                </div>
+                            </td>
+                            <td>
+                                <div id="configTableTestedBrowserName">
+                                    Internet Explorer (Windows), Edge (Windows), Firefox, Safari (macOS/Mac OS X), Chrome
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td nowrap="">
+                                <div id="configTableBrowserVer">
+                                    瀏覽器版本:
+                                </div>
+                            </td>
+                            <td nowrap="">
+                                <div id="configTableClientBrowserVer">
+                                    68.0.3440.75
+                                </div>
+                            </td>
+                            <td>
+                                <div id="configTableTestedBrowserVer">
+                                    Internet Explorer 10 - 11, Edge 12 -17 , Firefox 3.5 - 60, Safari 4 - 11, Chrome 13 - 67
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tbody id="jvmBlock" style="display: none;">
+                        <tr>
+                            <td nowrap="">
+                                <div id="configTableJVMEnabled">
+                                    Java虛擬器(JVM):
+                                </div>
+                            </td>
+                            <td nowrap="">
+                                <div id="configTableClientJVMEnabled">
+                                     
+                                </div>
+                            </td>
+                            <td>
+                                <div id="configTableTestedJVMEnabled">
+                                    已啟動
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td nowrap=""/>
+                            <td nowrap=""/>
+                            <td>
+                                <div id="configTableBrowsersNotSupportJava" style="color: #cc0000;">
+                                    Edge，Chrome(版本45或以上)及Firefox(版本52或以上)瀏覽器並不支援Java外掛程式。
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td nowrap="">
+                                <div id="configTableJVMVendor">
+                                    Java Runtime Environment(JRE)廠商:
+                                </div>
+                            </td>
+                            <td nowrap="">
+                                <div id="configTableClientJVMVendor">
+                                </div>
+                            </td>
+                            <td>
+                                <div id="configTableTestedJVMVendor">
+                                    Sun Microsystems / Oracle Corporation (Windows, macOS &amp; Linux), Apple Computer Inc. / Apple Inc. (Mac OS X)
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td nowrap="">
+                                <div id="configTableJVMVer">
+                                    Java Runtime Environment(JRE)版本:
+                                </div>
+                            </td>
+                            <td nowrap="">
+                                <div id="configTableClientJVMVer">
+                                </div>
+                            </td>
+                            <td>
+                                <div id="configTableTestedJVMVer">
+                                    1.5, 1.6, 1.7, 1.8
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </blockquote>
+            </div>
+            <div>
+                <p style="text-align: justify;">
+                    您可選擇繼續使用「稅務易」服務，但有可能因兼容性問題而未能順利完成所處理的事項。
+                </p>
+                <p style="text-align: justify;">
+                    您亦可選擇離開以便更改您的電腦設定。為確保您能順利使用「稅務易」提供的服務，我們建議您使用已完成測試的操作系統及瀏覽器組合，詳情請參閱
+                    <a href="http://www.gov.hk/tc/about/helpdesk/softwarerequirement/onlineservice.htm" target="_blank">
+                        「使用香港政府一站通網上服務的系統需求」
+                    </a>
+                    。
+                </p>
+            </div>
+            <div>
+                <p>
+                    <font color="#cc0000">
+                        如需協助，請聯絡
+                        <a href="https://etax13.ird.gov.hk/ird/login/html/helpdesk_zh.html" target="_blank">
+                            稅務易支援中心
+                        </a>
+                        。
+                    </font>
+                </p>
+            </div>
+            <div>
+                <form>
+                    <div style="text-align: center;">
+                        <input onclick="javascript:processCCCResults();" style="font-size: 18px;padding: 10px 25px;" type="button" value="繼續"/>
+                         
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="pageFooter">
+        <div id="footerArea">
+            <div id="footerPanelcolL">
+                <div id="footerlink">
+              <span id="footerAboutUs">
+                <a href="http://www.gov.hk/tc/about/aboutus.htm" target="_blank" class="footerlink">
+                  關於我們
+                </a>
+              </span>
+                    <span class="footertext">
+                |
+              </span>
+                    <span id="footerCopyright">
+                <a href="http://www.gov.hk/tc/about/copyright.htm" target="_blank" class="footerlink">
+                  版權告示
+                </a>
+              </span>
+                    <span class="footertext">
+                |
+              </span>
+                    <span id="footerPrivacy">
+                <a href="http://www.gov.hk/tc/about/privacy.htm" target="_blank" class="footerlink">
+                  私隱聲明
+                </a>
+              </span>
+                    <span class="footertext">
+                |
+              </span>
+                    <span id="footerDisclaimer">
+                <a href="http://www.gov.hk/tc/about/disclaimer.htm" target="_blank" class="footerlink">
+                  免責聲明
+                </a>
+              </span>
+                    <img src="images/footer_link_right.gif" align="top"/>
+                </div>
+            </div>
+            <div id="footerPanelcolR">
+                <img src="images/footer_hk_logo.gif" width="165" height="80" align="middle"/>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
