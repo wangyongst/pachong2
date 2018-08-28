@@ -17,7 +17,39 @@ public class Test {
     public static void main(String[] args) throws Exception {
         Test test = new Test();
         HtmlPage page = test.initPage();
-        page.getElementByName("companyName").setAttribute("value", "CA SERVICES LIMITED");
+        page = test.search(page, "The Hongkong and Shanghai Banking Corporation Limited");
+        page.getElementsById("cont_table").forEach(t -> {
+            t.getElementsByTagName("td").forEach(e -> {
+                if (e.getElementsByTagName("a").size() == 1) {
+                    System.out.println(e.getTextContent());
+                    try {
+                        test.searchMore(e.getElementsByTagName("a").get(0).click());
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
+        });
+    }
+
+    public void searchMore(HtmlPage page) {
+        final String[] info = {new String()};
+        page.getElementsById("cont_table").forEach(t -> {
+            t.getElementsByTagName("tr").forEach(e -> {
+                if (e.getAttribute("class").equals("colourlightgray")) {
+                    e.getElementsByTagName("td").forEach(m -> {
+                        info[0] = info[0] + e.getTextContent().trim() + "|";
+                    });
+                }
+            });
+        });
+        System.out.println(info[0]);
+    }
+
+
+    public HtmlPage search(HtmlPage page, String companyName) throws Exception {
+        page.getElementByName("companyName").setAttribute("value", companyName);
+        ((HtmlSelect) page.getElementByName("businessAddArea")).getOptionByValue("").click();
         ((HtmlSelect) page.getElementByName("businessAddArea")).getOptionByValue("A").click();
         final HtmlImage[] valiCodeImg = {null};
         page.getElementsByTagName("img").forEach(e -> {
@@ -28,7 +60,7 @@ public class Test {
         ImageReader imageReader = valiCodeImg[0].getImageReader();
         BufferedImage bufferedImage = imageReader.read(0);
         page.getElementByName("captchaStr").setAttribute("value", getCode(bufferedImage));
-        System.out.println(page.asXml());
+        return page.getAnchorByText("遞交").click();
     }
 
 
