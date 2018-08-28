@@ -16,8 +16,16 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: net.sourceforge.htmlunit:htmlunit:2.32" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: net.sourceforge.tess4j:tess4j:4.2.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.apache.pdfbox:pdfbox-tools:2.0.11" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.apache.pdfbox:pdfbox-debugger:2.0.11" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.apache.pdfbox:pdfbox:2.0.11" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.apache.httpcomponents:httpmime:4.5.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.apache.httpcomponents:httpclient:4.5.5" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.ghost4j:ghost4j:1.0.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: commons-beanutils:commons-beanutils:1.9.3" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.apache.xmlgraphics:xmlgraphics-commons:1.4" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.apache.pdfbox:fontbox:2.0.11" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: commons-logging:commons-logging:1.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: xalan:xalan:2.7.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.apache.commons:commons-text:1.4" level="project" />
@@ -25,9 +33,18 @@
     <orderEntry type="library" scope="PROVIDED" name="Gradle: net.sourceforge.htmlunit:htmlunit-core-js:2.32" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: net.sourceforge.htmlunit:neko-htmlunit:2.32" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: net.sourceforge.htmlunit:htmlunit-cssparser:1.1.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: net.sourceforge.lept4j:lept4j:1.10.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: commons-io:commons-io:2.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: commons-net:commons-net:3.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.eclipse.jetty.websocket:websocket-client:9.4.8.v20171121" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: net.java.dev.jna:jna:4.2.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: com.github.jai-imageio:jai-imageio-core:1.4.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.apache.pdfbox:jbig2-imageio:3.0.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jboss:jboss-vfs:3.2.13.Final" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: ch.qos.logback:logback-classic:1.1.11" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.slf4j:jul-to-slf4j:1.7.25" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.slf4j:jcl-over-slf4j:1.7.25" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.slf4j:log4j-over-slf4j:1.7.25" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: xalan:serializer:2.7.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: xerces:xercesImpl:2.11.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.eclipse.jetty:jetty-client:9.4.8.v20171121" level="project" />
@@ -36,13 +53,27 @@
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.eclipse.jetty:jetty-http:9.4.8.v20171121" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.eclipse.jetty:jetty-io:9.4.8.v20171121" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.eclipse.jetty:jetty-util:9.4.8.v20171121" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: log4j:log4j:1.2.17" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: com.lowagie:itext:2.1.7" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jboss.logging:jboss-logging:3.3.1.Final" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: ch.qos.logback:logback-core:1.1.11" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.apache.httpcomponents:httpcore:4.4.9" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: commons-codec:commons-codec:1.10" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: xml-apis:xml-apis:1.4.01" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.eclipse.jetty.websocket:websocket-api:9.4.8.v20171121" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: commons-collections:commons-collections:3.2.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: net.sourceforge.htmlunit:htmlunit:2.32" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: net.sourceforge.tess4j:tess4j:4.2.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.pdfbox:pdfbox-tools:2.0.11" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.pdfbox:pdfbox-debugger:2.0.11" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.pdfbox:pdfbox:2.0.11" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.httpcomponents:httpmime:4.5.5" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.httpcomponents:httpclient:4.5.5" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.ghost4j:ghost4j:1.0.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: commons-beanutils:commons-beanutils:1.9.3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.xmlgraphics:xmlgraphics-commons:1.4" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.pdfbox:fontbox:2.0.11" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: commons-logging:commons-logging:1.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: xalan:xalan:2.7.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.commons:commons-text:1.4" level="project" />
@@ -50,9 +81,18 @@
     <orderEntry type="library" scope="RUNTIME" name="Gradle: net.sourceforge.htmlunit:htmlunit-core-js:2.32" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: net.sourceforge.htmlunit:neko-htmlunit:2.32" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: net.sourceforge.htmlunit:htmlunit-cssparser:1.1.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: net.sourceforge.lept4j:lept4j:1.10.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: commons-io:commons-io:2.5" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: commons-net:commons-net:3.5" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.eclipse.jetty.websocket:websocket-client:9.4.8.v20171121" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: net.java.dev.jna:jna:4.2.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.github.jai-imageio:jai-imageio-core:1.4.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.pdfbox:jbig2-imageio:3.0.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jboss:jboss-vfs:3.2.13.Final" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: ch.qos.logback:logback-classic:1.1.11" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.slf4j:jul-to-slf4j:1.7.25" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.slf4j:jcl-over-slf4j:1.7.25" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.slf4j:log4j-over-slf4j:1.7.25" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: xalan:serializer:2.7.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: xerces:xercesImpl:2.11.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.eclipse.jetty:jetty-client:9.4.8.v20171121" level="project" />
@@ -61,13 +101,27 @@
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.eclipse.jetty:jetty-http:9.4.8.v20171121" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.eclipse.jetty:jetty-io:9.4.8.v20171121" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.eclipse.jetty:jetty-util:9.4.8.v20171121" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: log4j:log4j:1.2.17" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.lowagie:itext:2.1.7" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jboss.logging:jboss-logging:3.3.1.Final" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: ch.qos.logback:logback-core:1.1.11" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.httpcomponents:httpcore:4.4.9" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: commons-codec:commons-codec:1.10" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: xml-apis:xml-apis:1.4.01" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.eclipse.jetty.websocket:websocket-api:9.4.8.v20171121" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: commons-collections:commons-collections:3.2.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: net.sourceforge.htmlunit:htmlunit:2.32" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.sourceforge.tess4j:tess4j:4.2.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.pdfbox:pdfbox-tools:2.0.11" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.pdfbox:pdfbox-debugger:2.0.11" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.pdfbox:pdfbox:2.0.11" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.apache.httpcomponents:httpmime:4.5.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.apache.httpcomponents:httpclient:4.5.5" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.ghost4j:ghost4j:1.0.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: commons-beanutils:commons-beanutils:1.9.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.xmlgraphics:xmlgraphics-commons:1.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.pdfbox:fontbox:2.0.11" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: commons-logging:commons-logging:1.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: xalan:xalan:2.7.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.apache.commons:commons-text:1.4" level="project" />
@@ -75,9 +129,18 @@
     <orderEntry type="library" scope="TEST" name="Gradle: net.sourceforge.htmlunit:htmlunit-core-js:2.32" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: net.sourceforge.htmlunit:neko-htmlunit:2.32" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: net.sourceforge.htmlunit:htmlunit-cssparser:1.1.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.sourceforge.lept4j:lept4j:1.10.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: commons-io:commons-io:2.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: commons-net:commons-net:3.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.eclipse.jetty.websocket:websocket-client:9.4.8.v20171121" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.java.dev.jna:jna:4.2.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.github.jai-imageio:jai-imageio-core:1.4.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.pdfbox:jbig2-imageio:3.0.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jboss:jboss-vfs:3.2.13.Final" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: ch.qos.logback:logback-classic:1.1.11" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.slf4j:jul-to-slf4j:1.7.25" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.slf4j:jcl-over-slf4j:1.7.25" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.slf4j:log4j-over-slf4j:1.7.25" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: xalan:serializer:2.7.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: xerces:xercesImpl:2.11.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.eclipse.jetty:jetty-client:9.4.8.v20171121" level="project" />
@@ -86,9 +149,15 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.eclipse.jetty:jetty-http:9.4.8.v20171121" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.eclipse.jetty:jetty-io:9.4.8.v20171121" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.eclipse.jetty:jetty-util:9.4.8.v20171121" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: log4j:log4j:1.2.17" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.lowagie:itext:2.1.7" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jboss.logging:jboss-logging:3.3.1.Final" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: ch.qos.logback:logback-core:1.1.11" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.apache.httpcomponents:httpcore:4.4.9" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: commons-codec:commons-codec:1.10" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: xml-apis:xml-apis:1.4.01" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.eclipse.jetty.websocket:websocket-api:9.4.8.v20171121" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: commons-collections:commons-collections:3.2.2" level="project" />
   </component>
 </module>

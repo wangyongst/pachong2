@@ -59,7 +59,7 @@ dependencies {
 // https://mvnrepository.com/artifact/net.sourceforge.htmlunit/htmlunit
     compile group: 'net.sourceforge.htmlunit', name: 'htmlunit', version: '2.32'
 
-
+    compile group: 'net.sourceforge.tess4j', name: 'tess4j', version: '4.2.1'
 
 }
 

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: net.sourceforge.tess4j:tess4j:4.2.1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/net.sourceforge.tess4j/tess4j/4.2.1/59a005b5f326eb68a5a52c00647115d6a8cb5017/tess4j-4.2.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/net.sourceforge.tess4j/tess4j/4.2.1/80bb70a22c608266d00327f0d84a01b8568876d8/tess4j-4.2.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

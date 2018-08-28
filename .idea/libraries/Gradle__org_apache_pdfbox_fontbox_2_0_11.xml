@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.pdfbox:fontbox:2.0.11">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/org.apache.pdfbox/fontbox/2.0.11/b883ca275b4b39f06549e3dbe6b3662a900583e7/fontbox-2.0.11.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/org.apache.pdfbox/fontbox/2.0.11/dbad37466b2f51f5bb883078b3c3988063f7d5c4/fontbox-2.0.11-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

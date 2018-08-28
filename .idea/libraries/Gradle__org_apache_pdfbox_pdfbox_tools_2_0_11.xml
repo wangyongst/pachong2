@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.pdfbox:pdfbox-tools:2.0.11">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/org.apache.pdfbox/pdfbox-tools/2.0.11/6ed2f797da7a73e35bc072ce1bd4dbc3f687ade7/pdfbox-tools-2.0.11.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/org.apache.pdfbox/pdfbox-tools/2.0.11/4ffd6eb779d062b99a76ee4162f5f70ef29f667f/pdfbox-tools-2.0.11-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

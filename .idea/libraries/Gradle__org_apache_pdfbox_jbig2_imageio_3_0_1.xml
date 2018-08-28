@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.pdfbox:jbig2-imageio:3.0.1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/org.apache.pdfbox/jbig2-imageio/3.0.1/94db5a684b9bd72e628449ca60c889013fa95cb2/jbig2-imageio-3.0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/org.apache.pdfbox/jbig2-imageio/3.0.1/bdd35899cc26480440ce69c2bf4cd13fabe63b8a/jbig2-imageio-3.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

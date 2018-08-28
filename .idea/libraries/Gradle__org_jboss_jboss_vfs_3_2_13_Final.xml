@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jboss:jboss-vfs:3.2.13.Final">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/org.jboss/jboss-vfs/3.2.13.Final/d16819de4401488d87664d69a7e820e688759c40/jboss-vfs-3.2.13.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/caches/modules-2/files-2.1/org.jboss/jboss-vfs/3.2.13.Final/a56d97bde77008b8bfd924cddc55292c11587586/jboss-vfs-3.2.13.Final-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
