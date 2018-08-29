@@ -9,8 +9,6 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlSelect;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 
 import javax.imageio.ImageReader;
 import java.awt.image.BufferedImage;
@@ -19,46 +17,68 @@ import java.io.IOException;
 
 public class Test {
 
+    public HtmlPage page = null;
+
     public static void main(String[] args) throws Exception {
         Test test = new Test();
-        HtmlPage page = test.initPage();
-        test.start(page);
+        while (test.page == null) {
+            test.initPage();
+        }
+        String comName = "The Hongkong and Shanghai Banking Corporation Limited";
+        for (int i = 0; i < 10; i++) {
+            test.start(comName);
+            System.out.println(i + "++++++++++++++++++++++++++++++++++++++++++");
+        }
     }
 
-    public boolean start(HtmlPage page) throws Exception {
-        page = search(page, "The Hongkong and Shanghai Banking Corporation Limited");
+    public boolean start(String companyName) throws Exception {
+        search(companyName);
+        parser();
         try {
             while (page.getAnchorByText("下一頁") != null) {
                 page = page.getAnchorByText("下一頁").click();
-                parser(page);
+                parser();
             }
         } catch (ElementNotFoundException e) {
-            return true;
+            page = page.getAnchorByText("重新查詢").click();
         }
-        page = page.getAnchorByText("重新查詢").click();
         return true;
     }
 
-    public HtmlPage parserMore(HtmlPage page, HtmlElement element) throws IOException {
+    public boolean parserMore(HtmlElement element) throws IOException {
         page = element.getElementsByTagName("a").get(0).click();
-        Document document = Jsoup.parse(page.asXml());
-        return page.getAnchorByText("返回上頁").click();
-    }
-
-    public HtmlPage parser(HtmlPage page) throws Exception {
         page.getElementsById("cont_table").forEach(t -> {
-            t.getElementsByTagName("td").forEach(e -> {
-                if (e.getElementsByTagName("a").size() == 1) {
-                    System.out.println(e.asXml());
-                    System.out.println(e.getTextContent());
+            t.getElementsByTagName("tr").forEach(e -> {
+                if(e.getAttribute("class").equals("colourlightgray")) {
+                    System.out.println("____________________");
+                    System.out.println(e.getTextContent().trim().replaceAll(" {2,}", " "));
+                    System.out.println("____________________");
                 }
             });
         });
-        return page;
+        page = page.getAnchorByText("返回上頁").click();
+        return true;
+    }
+
+    public boolean parser() throws Exception {
+        page.getElementsById("cont_table").forEach(t -> {
+            t.getElementsByTagName("td").forEach(e -> {
+                if (e.getElementsByTagName("a").size() == 1 && e.getFirstChild().getNextSibling().getNodeName().equals("a")) {
+                    System.out.println("____________________");
+                    System.out.println(e.getTextContent().trim().replaceAll(" {2,}", " "));
+                    System.out.println("____________________");
+                    try {
+                        parserMore(e);
+                    } catch (IOException e1) {
+                    }
+                }
+            });
+        });
+        return true;
     }
 
 
-    public HtmlPage search(HtmlPage page, String companyName) throws Exception {
+    public boolean search(String companyName) throws Exception {
         page.getElementByName("companyName").setAttribute("value", companyName);
         ((HtmlSelect) page.getElementByName("businessAddArea")).getOptionByValue("").click();
         ((HtmlSelect) page.getElementByName("businessAddArea")).getOptionByValue("A").click();
@@ -71,7 +91,8 @@ public class Test {
         ImageReader imageReader = valiCodeImg[0].getImageReader();
         BufferedImage bufferedImage = imageReader.read(0);
         page.getElementByName("captchaStr").setAttribute("value", getCode(bufferedImage));
-        return page.getAnchorByText("遞交").click();
+        page = page.getAnchorByText("遞交").click();
+        return true;
     }
 
 
@@ -82,7 +103,7 @@ public class Test {
     }
 
 
-    public HtmlPage initPage() throws IOException, InterruptedException {
+    public boolean initPage() throws IOException, InterruptedException {
         WebClient webClient = new WebClient(BrowserVersion.CHROME);
         webClient.getOptions().setUseInsecureSSL(true);
         webClient.getOptions().setCssEnabled(true);
@@ -90,7 +111,7 @@ public class Test {
         webClient.getOptions().setActiveXNative(true);
         webClient.getOptions().setJavaScriptEnabled(true);
         webClient.getOptions().setRedirectEnabled(true);
-        HtmlPage page = webClient.getPage("https://www.gov.hk/sc/residents/taxes/etax/services/brn_enquiry.htm");
+        page = webClient.getPage("https://www.gov.hk/sc/residents/taxes/etax/services/brn_enquiry.htm");
         page = page.getAnchorByHref("/sc/apps/irdbrnenquiry.htm").click();
         Thread.sleep(10000);
         page = page.getElementsByTagName("input").get(0).click();
@@ -105,6 +126,7 @@ public class Test {
                 }
             }
         });
-        return page.getAnchorByText("繼續").click();
+        page = page.getAnchorByText("繼續").click();
+        return true;
     }
 }

@@ -44,8 +44,6 @@ dependencies {
 
     compile('org.apache.tomcat:tomcat-jdbc')
 
-    compile('org.jsoup:jsoup:1.11.3')
-
     compile('org.apache.commons:commons-lang3')
 
     compile("mysql:mysql-connector-java")
