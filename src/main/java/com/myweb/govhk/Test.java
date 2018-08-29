@@ -45,21 +45,6 @@ public class Test {
         return true;
     }
 
-    public boolean parserMore(HtmlElement element) throws IOException {
-        page = element.getElementsByTagName("a").get(0).click();
-        page.getElementsById("cont_table").forEach(t -> {
-            t.getElementsByTagName("tr").forEach(e -> {
-                if(e.getAttribute("class").equals("colourlightgray")) {
-                    System.out.println("____________________");
-                    System.out.println(e.getTextContent().trim().replaceAll(" {2,}", " "));
-                    System.out.println("____________________");
-                }
-            });
-        });
-        page = page.getAnchorByText("返回上頁").click();
-        return true;
-    }
-
     public boolean parser() throws Exception {
         page.getElementsById("cont_table").forEach(t -> {
             t.getElementsByTagName("td").forEach(e -> {
@@ -68,8 +53,20 @@ public class Test {
                     System.out.println(e.getTextContent().trim().replaceAll(" {2,}", " "));
                     System.out.println("____________________");
                     try {
-                        parserMore(e);
-                    } catch (IOException e1) {
+                        page = e.getElementsByTagName("a").get(0).click();
+                        page.getElementsById("cont_table").forEach(m -> {
+                            m.getElementsByTagName("tr").forEach(n -> {
+                                if (n.getChildElementCount() == 2) {
+                                    System.out.println("____________________");
+                                    System.out.println(n.getFirstChild().getTextContent().trim().replaceAll(" {2,}", " "));
+                                    System.out.println(n.getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
+                                    System.out.println("____________________");
+                                }
+                            });
+                        });
+                        page = page.getAnchorByText("返回上頁").click();
+                    } catch (Exception e1) {
+
                     }
                 }
             });
