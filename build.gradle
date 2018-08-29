@@ -39,24 +39,19 @@ dependencyManagement {
 [compileJava, compileTestJava, javadoc]*.options*.encoding = "utf-8"
 
 dependencies {
-//
-//    compile('commons-dbutils:commons-dbutils:1.7')
-//
-//    compile('org.apache.tomcat:tomcat-jdbc')
-//
-//    compile('org.jsoup:jsoup:1.11.3')
-//
-    compile('commons-logging:commons-logging')
-//
-//    compile('org.apache.commons:commons-lang3')
-//
-//    compile('org.apache.httpcomponents:httpclient')
-//
-//    compile("mysql:mysql-connector-java")
-//
-//    compile('com.fasterxml.jackson.core:jackson-databind', 'com.fasterxml.jackson.core:jackson-core')
 
-// https://mvnrepository.com/artifact/net.sourceforge.htmlunit/htmlunit
+    compile('commons-dbutils:commons-dbutils:1.7')
+
+    compile('org.apache.tomcat:tomcat-jdbc')
+
+    compile('org.jsoup:jsoup:1.11.3')
+
+    compile('org.apache.commons:commons-lang3')
+
+    compile("mysql:mysql-connector-java")
+
+    compile('com.fasterxml.jackson.core:jackson-databind', 'com.fasterxml.jackson.core:jackson-core')
+
     compile group: 'net.sourceforge.htmlunit', name: 'htmlunit', version: '2.32'
 
     compile group: 'net.sourceforge.tess4j', name: 'tess4j', version: '4.2.1'

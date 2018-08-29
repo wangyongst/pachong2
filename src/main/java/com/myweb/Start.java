@@ -1,14 +1,19 @@
 package com.myweb;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.myweb.govhk.Test;
 
 public class Start {
-
-    private static final int MAX_THREADS = 50;
-    public static final int SLEEP = 5000;
-    public static ExecutorService executorService = Executors.newFixedThreadPool(MAX_THREADS);
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        Test test = new Test();
+        HtmlPage page = test.initPage();
+        page = test.search(page, "The Hongkong and Shanghai Banking Corporation Limited");
+        page.getElementsById("cont_table").forEach(t -> {
+            t.getElementsByTagName("td").forEach(e -> {
+                if (e.getElementsByTagName("a").size() == 1) {
+                    System.out.println(e.getTextContent());
+                }
+            });
+        });
     }
 }

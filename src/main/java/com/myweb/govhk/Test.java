@@ -1,49 +1,60 @@
 package com.myweb.govhk;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
+import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlImage;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlSelect;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import javax.imageio.ImageReader;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+
 
 public class Test {
 
     public static void main(String[] args) throws Exception {
         Test test = new Test();
         HtmlPage page = test.initPage();
-        page = test.search(page, "The Hongkong and Shanghai Banking Corporation Limited");
+        test.start(page);
+    }
+
+    public boolean start(HtmlPage page) throws Exception {
+        page = search(page, "The Hongkong and Shanghai Banking Corporation Limited");
+        try {
+            while (page.getAnchorByText("下一頁") != null) {
+                page = page.getAnchorByText("下一頁").click();
+                parser(page);
+            }
+        } catch (ElementNotFoundException e) {
+            return true;
+        }
+        page = page.getAnchorByText("重新查詢").click();
+        return true;
+    }
+
+    public HtmlPage parserMore(HtmlPage page, HtmlElement element) throws IOException {
+        page = element.getElementsByTagName("a").get(0).click();
+        Document document = Jsoup.parse(page.asXml());
+        return page.getAnchorByText("返回上頁").click();
+    }
+
+    public HtmlPage parser(HtmlPage page) throws Exception {
         page.getElementsById("cont_table").forEach(t -> {
             t.getElementsByTagName("td").forEach(e -> {
                 if (e.getElementsByTagName("a").size() == 1) {
+                    System.out.println(e.asXml());
                     System.out.println(e.getTextContent());
-                    try {
-                        test.searchMore(e.getElementsByTagName("a").get(0).click());
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
                 }
             });
         });
-    }
-
-    public void searchMore(HtmlPage page) {
-        final String[] info = {new String()};
-        page.getElementsById("cont_table").forEach(t -> {
-            t.getElementsByTagName("tr").forEach(e -> {
-                if (e.getAttribute("class").equals("colourlightgray")) {
-                    e.getElementsByTagName("td").forEach(m -> {
-                        info[0] = info[0] + e.getTextContent().trim() + "|";
-                    });
-                }
-            });
-        });
-        System.out.println(info[0]);
+        return page;
     }
 
 
