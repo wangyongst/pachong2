@@ -58,6 +58,7 @@ public class Test {
                     companyInfo.setAddress(e.getTextContent().trim().replaceAll(" {2,}", " "));
                     try {
                         page = e.getElementsByTagName("a").get(0).click();
+                        Thread.sleep(5000);
                         page.getElementsById("cont_table").forEach(m -> {
                             m.getElementsByTagName("tr").forEach(n -> {
                                 if (n.getChildElementCount() == 2) {
