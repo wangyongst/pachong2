@@ -26,18 +26,20 @@ public class Test {
         }
         String comName = "The Hongkong and Shanghai Banking Corporation Limited";
         for (int i = 0; i < 10; i++) {
-            test.start(comName);
+            CompanyInfo companyInfo = new CompanyInfo();
+            companyInfo.setName(comName);
+            test.start(companyInfo);
             System.out.println(i + "++++++++++++++++++++++++++++++++++++++++++");
         }
     }
 
-    public boolean start(String companyName) throws Exception {
-        search(companyName);
-        parser();
+    public boolean start(CompanyInfo companyInfo) throws Exception {
+        search(companyInfo);
+        parser(companyInfo);
         try {
             while (page.getAnchorByText("下一頁") != null) {
                 page = page.getAnchorByText("下一頁").click();
-                parser();
+                parser(companyInfo);
             }
         } catch (ElementNotFoundException e) {
             page = page.getAnchorByText("重新查詢").click();
@@ -45,28 +47,30 @@ public class Test {
         return true;
     }
 
-    public boolean parser() throws Exception {
+    public boolean parser(CompanyInfo companyInfo) throws Exception {
         page.getElementsById("cont_table").forEach(t -> {
             t.getElementsByTagName("td").forEach(e -> {
                 if (e.getElementsByTagName("a").size() == 1 && e.getFirstChild().getNextSibling().getNodeName().equals("a")) {
                     System.out.println("____________________");
                     System.out.println(e.getTextContent().trim().replaceAll(" {2,}", " "));
                     System.out.println("____________________");
+                    CompanyInfo companyInfo1 = companyInfo;
+                    companyInfo.setAddress(e.getTextContent().trim().replaceAll(" {2,}", " "));
                     try {
                         page = e.getElementsByTagName("a").get(0).click();
                         page.getElementsById("cont_table").forEach(m -> {
                             m.getElementsByTagName("tr").forEach(n -> {
                                 if (n.getChildElementCount() == 2) {
                                     System.out.println("____________________");
-                                    System.out.println(n.getFirstChild().getTextContent().trim().replaceAll(" {2,}", " "));
-                                    System.out.println(n.getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
+                                    System.out.println(n.getFirstChild().asText().trim().replaceAll(" {2,}", " "));
+                                    System.out.println(n.getLastChild().asText().trim().replaceAll(" {2,}", " "));
                                     System.out.println("____________________");
                                 }
                             });
                         });
                         page = page.getAnchorByText("返回上頁").click();
                     } catch (Exception e1) {
-
+                        e1.printStackTrace();
                     }
                 }
             });
@@ -75,8 +79,8 @@ public class Test {
     }
 
 
-    public boolean search(String companyName) throws Exception {
-        page.getElementByName("companyName").setAttribute("value", companyName);
+    public boolean search(CompanyInfo companyInfo) throws Exception {
+        page.getElementByName("companyName").setAttribute("value", companyInfo.getName());
         ((HtmlSelect) page.getElementByName("businessAddArea")).getOptionByValue("").click();
         ((HtmlSelect) page.getElementByName("businessAddArea")).getOptionByValue("A").click();
         final HtmlImage[] valiCodeImg = {null};
