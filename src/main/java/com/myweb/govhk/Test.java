@@ -63,9 +63,10 @@ public class Test {
                 System.out.println(e.getTextContent().trim().replaceAll(" {2,}", " "));
                 companyInfo.setAddress(e.getTextContent().trim().replaceAll(" {2,}", " "));
                 try {
-                    e.getElementsByTagName("a").get(0).removeAttribute("href");
+                    e.getElementsByTagName("a").get(0).setAttribute("href", e.getElementsByTagName("a").get(0).getAttribute("onclick").split("'")[1]);
+                    e.getElementsByTagName("a").get(0).removeAttribute("onclick");
                     page = e.getElementsByTagName("a").get(0).click();
-                    Thread.sleep(10000);
+                    Thread.sleep(2000);
                     System.out.println(page.getBaseURL().toString());
                     table = page.getElementsById("cont_table").get(2);
                     List<HtmlElement> trs = table.getElementsByTagName("tr");
@@ -88,7 +89,7 @@ public class Test {
                     }
                     System.out.println(companyInfo.getBranchename() + "----------   " + companyInfo.getBranchname() + "-----------    " + companyInfo.getInfono() + "------------    " + companyInfo.getCorpname() + "--------------    " + companyInfo.getCortename() + "--------------    " + companyInfo.getAddress());
                     page = page.getAnchorByText("返回上頁").click();
-                    Thread.sleep(10000);
+                    Thread.sleep(2000);
                 } catch (Exception e1) {
                     return false;
                 }
@@ -136,7 +137,7 @@ public class Test {
         webClient.getOptions().setRedirectEnabled(true);
         try {
             page = webClient.getPage("https://www.gov.hk/sc/apps/irdbrnenquiry.htm");
-            page = page.getElementsByTagName("input").get(0).click();
+            Thread.sleep(10000);
             page = page.getAnchorByText("開始使用服務").click();
             page = page.getAnchorByText("我已閱讀上述收集個人資料聲明及說明").click();
             page.getElementsByTagName("input").forEach(e -> {
