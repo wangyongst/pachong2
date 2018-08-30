@@ -71,14 +71,16 @@ public class Test {
                     List<HtmlElement> trs = table.getElementsByTagName("tr");
                     for (HtmlElement n : trs) {
                         if (n.getChildElementCount() == 2) {
+                            companyInfo.setBranchename(null);
+                            companyInfo.setBranchname(null);
+                            companyInfo.setCortename(null);
+                            companyInfo.setCorpname(null);
                             if (((HtmlTableRow) n).getCell(0).getFirstChild().getTextContent().contains("商業登記號碼")) {
                                 companyInfo.setInfono(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
                             } else if (((HtmlTableRow) n).getCell(0).getFirstChild().getTextContent().contains("業務/法團名稱(中文)")) {
                                 companyInfo.setCorpname(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
                             } else if (((HtmlTableRow) n).getCell(0).getFirstChild().getTextContent().contains("業務/法團名稱(英文)")) {
                                 companyInfo.setCortename(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
-                            } else if (((HtmlTableRow) n).getCell(0).getFirstChild().getTextContent().contains("商業登記號碼")) {
-                                companyInfo.setInfono(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
                             } else if (((HtmlTableRow) n).getCell(0).getFirstChild().getTextContent().contains("分行名稱(中文)")) {
                                 companyInfo.setBranchname(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
                             } else if (((HtmlTableRow) n).getCell(0).getFirstChild().getTextContent().contains("分行名稱(英文)")) {
