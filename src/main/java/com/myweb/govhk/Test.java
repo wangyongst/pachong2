@@ -63,8 +63,7 @@ public class Test {
                 System.out.println(e.getTextContent().trim().replaceAll(" {2,}", " "));
                 companyInfo.setAddress(e.getTextContent().trim().replaceAll(" {2,}", " "));
                 try {
-                    e.getElementsByTagName("a").get(0).setAttribute("href", e.getElementsByTagName("a").get(0).getAttribute("onclick").split("'")[1]);
-                    e.getElementsByTagName("a").get(0).removeAttribute("onclick");
+                    System.out.println(e.getElementsByTagName("a").get(0).getAttribute("onclick"));
                     page = e.getElementsByTagName("a").get(0).click();
                     Thread.sleep(2000);
                     System.out.println(page.getBaseURL().toString());
@@ -115,6 +114,7 @@ public class Test {
             page.getElementByName("captchaStr").setAttribute("value", getCode(bufferedImage));
             page = page.getAnchorByText("遞交").click();
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
         return true;
@@ -137,7 +137,7 @@ public class Test {
         webClient.getOptions().setRedirectEnabled(true);
         try {
             page = webClient.getPage("https://www.gov.hk/sc/apps/irdbrnenquiry.htm");
-            Thread.sleep(10000);
+            page = page.getElementsByTagName("input").get(0).click();
             page = page.getAnchorByText("開始使用服務").click();
             page = page.getAnchorByText("我已閱讀上述收集個人資料聲明及說明").click();
             page.getElementsByTagName("input").forEach(e -> {
@@ -151,6 +151,7 @@ public class Test {
             });
             page = page.getAnchorByText("繼續").click();
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
         return true;
