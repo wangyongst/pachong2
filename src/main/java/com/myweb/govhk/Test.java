@@ -63,7 +63,6 @@ public class Test {
                 System.out.println(e.getTextContent().trim().replaceAll(" {2,}", " "));
                 companyInfo.setAddress(e.getTextContent().trim().replaceAll(" {2,}", " "));
                 try {
-                    System.out.println(e.getElementsByTagName("a").get(0).getAttribute("onclick"));
                     page = e.getElementsByTagName("a").get(0).click();
                     Thread.sleep(2000);
                     System.out.println(page.getBaseURL().toString());
