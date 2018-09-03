@@ -34,12 +34,12 @@ public class Test {
 
     public boolean start(CompanyInfo companyInfo) {
         while (!search(companyInfo)) ;
-        while (!parser(companyInfo)) ;
+        while (!parserTwo(companyInfo)) ;
         try {
             while (page.getAnchorByText("下一頁") != null) {
                 page = page.getAnchorByText("下一頁").click();
                 System.out.println(page.getBaseURL().toString());
-                parser(companyInfo);
+                while (!parserTwo(companyInfo));
             }
         } catch (ElementNotFoundException e) {
             try {
@@ -63,42 +63,51 @@ public class Test {
             if (e.getElementsByTagName("a").size() == 1 && e.getFirstChild().getNextSibling().getNodeName().equals("a")) {
                 System.out.println(e.getTextContent().trim().replaceAll(" {2,}", " "));
                 companyInfo.setAddress(e.getTextContent().trim().replaceAll(" {2,}", " "));
-                parserDetail(companyInfo,e,table);
-                System.out.println(companyInfo.getBranchename() + "----------   " + companyInfo.getBranchname() + "-----------    " + companyInfo.getInfono() + "------------    " + companyInfo.getCorpname() + "--------------    " + companyInfo.getCortename() + "--------------    " + companyInfo.getAddress());
+                //parserDetail(companyInfo, e, table);
+                System.out.println(companyInfo.getName() + "----------   " + companyInfo.getBranchename() + "----------   " + companyInfo.getBranchname() + "-----------    " + companyInfo.getInfono() + "------------    " + companyInfo.getCorpname() + "--------------    " + companyInfo.getCortename() + "--------------    " + companyInfo.getAddress());
             }
         }
         return true;
     }
 
-    public boolean parserDetail(CompanyInfo companyInfo, HtmlElement htmlElement, DomElement domElement) {
-        try {
-            page = htmlElement.getElementsByTagName("a").get(0).click();
-            System.out.println(page.getBaseURL().toString());
-            domElement = page.getElementsById("cont_table").get(2);
-            List<HtmlElement> trs = domElement.getElementsByTagName("tr");
-            for (HtmlElement n : trs) {
-                if (n.getChildElementCount() == 2) {
-                    companyInfo.setBranchename(null);
-                    companyInfo.setBranchname(null);
-                    companyInfo.setCortename(null);
-                    companyInfo.setCorpname(null);
-                    if (((HtmlTableRow) n).getCell(0).getFirstChild().getTextContent().contains("商業登記號碼")) {
-                        companyInfo.setInfono(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
-                    } else if (((HtmlTableRow) n).getCell(0).getFirstChild().getTextContent().contains("業務/法團名稱(中文)")) {
-                        companyInfo.setCorpname(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
-                    } else if (((HtmlTableRow) n).getCell(0).getFirstChild().getTextContent().contains("業務/法團名稱(英文)")) {
-                        companyInfo.setCortename(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
-                    } else if (((HtmlTableRow) n).getCell(0).getFirstChild().getTextContent().contains("分行名稱(中文)")) {
-                        companyInfo.setBranchname(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
-                    } else if (((HtmlTableRow) n).getCell(0).getFirstChild().getTextContent().contains("分行名稱(英文)")) {
-                        companyInfo.setBranchename(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
+
+    public boolean parserTwo(CompanyInfo companyInfo) {
+        DomElement table = page.getElementsById("cont_table").get(2);
+        List<HtmlElement> tds = table.getElementsByTagName("td");
+        for (int i = 0; i < tds.size(); i++) {
+            HtmlElement e = tds.get(i);
+            if (e.getElementsByTagName("a").size() == 1 && e.getFirstChild().getNextSibling().getNodeName().equals("a")) {
+                try {
+                    page = e.getElementsByTagName("a").get(0).click();
+                    System.out.println(page.getBaseURL().toString());
+                    List<HtmlElement> trs = table.getElementsByTagName("tr");
+                    for (HtmlElement n : trs) {
+                        if (n.getChildElementCount() == 2) {
+                            companyInfo.setBranchename(null);
+                            companyInfo.setBranchname(null);
+                            companyInfo.setCortename(null);
+                            companyInfo.setCorpname(null);
+                            companyInfo.setInfono(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
+                            if (((HtmlTableRow) n).getCell(0).getFirstChild().getTextContent().contains("商業登記號碼")) {
+                                companyInfo.setInfono(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
+                            } else if (((HtmlTableRow) n).getCell(0).getFirstChild().getTextContent().contains("業務/法團名稱(中文)")) {
+                                companyInfo.setCorpname(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
+                            } else if (((HtmlTableRow) n).getCell(0).getFirstChild().getTextContent().contains("業務/法團名稱(英文)")) {
+                                companyInfo.setCortename(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
+                            } else if (((HtmlTableRow) n).getCell(0).getFirstChild().getTextContent().contains("分行名稱(中文)")) {
+                                companyInfo.setBranchname(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
+                            } else if (((HtmlTableRow) n).getCell(0).getFirstChild().getTextContent().contains("分行名稱(英文)")) {
+                                companyInfo.setBranchename(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
+                            }
+                        }
                     }
+                    System.out.println(companyInfo.getName() + "----------   " + companyInfo.getBranchename() + "----------   " + companyInfo.getBranchname() + "-----------    " + companyInfo.getInfono() + "------------    " + companyInfo.getCorpname() + "--------------    " + companyInfo.getCortename() + "--------------    " + companyInfo.getAddress());
+                    page = page.getAnchorByText("返回上頁").click();
+                    System.out.println(page.getBaseURL().toString());
+                } catch (Exception e1) {
+                    return false;
                 }
             }
-            System.out.println(companyInfo.getBranchename() + "----------   " + companyInfo.getBranchname() + "-----------    " + companyInfo.getInfono() + "------------    " + companyInfo.getCorpname() + "--------------    " + companyInfo.getCortename() + "--------------    " + companyInfo.getAddress());
-            page = page.getAnchorByText("返回上頁").click();
-        } catch (Exception e1) {
-            return false;
         }
         return true;
     }
