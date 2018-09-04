@@ -39,7 +39,7 @@ public class Test {
             while (page.getAnchorByText("下一頁") != null) {
                 page = page.getAnchorByText("下一頁").click();
                 System.out.println(page.getBaseURL().toString());
-                while (!parserTwo(companyInfo));
+                while (!parserTwo(companyInfo)) ;
             }
         } catch (ElementNotFoundException e) {
             try {
@@ -78,8 +78,12 @@ public class Test {
             HtmlElement e = tds.get(i);
             if (e.getElementsByTagName("a").size() == 1 && e.getFirstChild().getNextSibling().getNodeName().equals("a")) {
                 try {
-                    page = e.getElementsByTagName("a").get(0).click();
+                    HtmlAnchor anchor = (HtmlAnchor) e.getElementsByTagName("a").get(0);
+                    companyInfo.setAddress(anchor.getTextContent());
+                    System.out.println(anchor.getOnClickAttribute());
+                    page = (HtmlPage) page.executeJavaScript(anchor.getOnClickAttribute()).getNewPage();
                     System.out.println(page.getBaseURL().toString());
+                    table = page.getElementsById("cont_table").get(2);
                     List<HtmlElement> trs = table.getElementsByTagName("tr");
                     for (HtmlElement n : trs) {
                         if (n.getChildElementCount() == 2) {
