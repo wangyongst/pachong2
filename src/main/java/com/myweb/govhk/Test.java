@@ -25,21 +25,22 @@ public class Test {
             while (!test.initPage()) ;
         }
         CompanyInfo companyInfo = new CompanyInfo();
-        companyInfo.setName("CA SERVICES LIMITED");
+        companyInfo.setEnname("CA SERVICES LIMITED");
         while (!test.start(companyInfo)) ;
-        companyInfo.setName("The Hongkong and Shanghai Banking Corporation Limited");
+        companyInfo = new CompanyInfo();
+        companyInfo.setEnname("The Hongkong and Shanghai Banking Corporation Limited");
         while (!test.start(companyInfo)) ;
-
     }
 
     public boolean start(CompanyInfo companyInfo) {
         while (!search(companyInfo)) ;
         while (!parserTwo(companyInfo)) ;
+        while (!parser(companyInfo)) ;
         try {
             while (page.getAnchorByText("下一頁") != null) {
                 page = page.getAnchorByText("下一頁").click();
                 System.out.println(page.getBaseURL().toString());
-                while (!parserTwo(companyInfo)) ;
+                while (!parser(companyInfo)) ;
             }
         } catch (ElementNotFoundException e) {
             try {
@@ -63,8 +64,7 @@ public class Test {
             if (e.getElementsByTagName("a").size() == 1 && e.getFirstChild().getNextSibling().getNodeName().equals("a")) {
                 System.out.println(e.getTextContent().trim().replaceAll(" {2,}", " "));
                 companyInfo.setAddress(e.getTextContent().trim().replaceAll(" {2,}", " "));
-                //parserDetail(companyInfo, e, table);
-                System.out.println(companyInfo.getName() + "----------   " + companyInfo.getBranchename() + "----------   " + companyInfo.getBranchname() + "-----------    " + companyInfo.getInfono() + "------------    " + companyInfo.getCorpname() + "--------------    " + companyInfo.getCortename() + "--------------    " + companyInfo.getAddress());
+                System.out.println(companyInfo.getEnname() + "--------------    " + companyInfo.getAddress());
             }
         }
         return true;
@@ -72,6 +72,7 @@ public class Test {
 
 
     public boolean parserTwo(CompanyInfo companyInfo) {
+        if (page.getElementsById("cont_table").size() < 3) return false;
         DomElement table = page.getElementsById("cont_table").get(2);
         List<HtmlElement> tds = table.getElementsByTagName("td");
         for (int i = 0; i < tds.size(); i++) {
@@ -79,25 +80,19 @@ public class Test {
             if (e.getElementsByTagName("a").size() == 1 && e.getFirstChild().getNextSibling().getNodeName().equals("a")) {
                 try {
                     HtmlAnchor anchor = (HtmlAnchor) e.getElementsByTagName("a").get(0);
-                    companyInfo.setAddress(anchor.getTextContent());
-                    System.out.println(anchor.getOnClickAttribute());
+                    companyInfo.setAddress(anchor.getTextContent().trim().replaceAll(" {2,}", " "));
                     page = (HtmlPage) page.executeJavaScript(anchor.getOnClickAttribute()).getNewPage();
-                    System.out.println(page.getBaseURL().toString());
+                    if (page.getElementsById("cont_table").size() < 3) return false;
                     table = page.getElementsById("cont_table").get(2);
                     List<HtmlElement> trs = table.getElementsByTagName("tr");
                     for (HtmlElement n : trs) {
                         if (n.getChildElementCount() == 2) {
-                            companyInfo.setBranchename(null);
-                            companyInfo.setBranchname(null);
-                            companyInfo.setCortename(null);
-                            companyInfo.setCorpname(null);
-                            companyInfo.setInfono(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
                             if (((HtmlTableRow) n).getCell(0).getFirstChild().getTextContent().contains("商業登記號碼")) {
                                 companyInfo.setInfono(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
                             } else if (((HtmlTableRow) n).getCell(0).getFirstChild().getTextContent().contains("業務/法團名稱(中文)")) {
                                 companyInfo.setCorpname(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
                             } else if (((HtmlTableRow) n).getCell(0).getFirstChild().getTextContent().contains("業務/法團名稱(英文)")) {
-                                companyInfo.setCortename(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
+                                companyInfo.setCorpename(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
                             } else if (((HtmlTableRow) n).getCell(0).getFirstChild().getTextContent().contains("分行名稱(中文)")) {
                                 companyInfo.setBranchname(((HtmlTableRow) n).getCell(1).getLastChild().getTextContent().trim().replaceAll(" {2,}", " "));
                             } else if (((HtmlTableRow) n).getCell(0).getFirstChild().getTextContent().contains("分行名稱(英文)")) {
@@ -105,9 +100,9 @@ public class Test {
                             }
                         }
                     }
-                    System.out.println(companyInfo.getName() + "----------   " + companyInfo.getBranchename() + "----------   " + companyInfo.getBranchname() + "-----------    " + companyInfo.getInfono() + "------------    " + companyInfo.getCorpname() + "--------------    " + companyInfo.getCortename() + "--------------    " + companyInfo.getAddress());
+                    System.out.println(companyInfo.getEnname() + "----------   " + companyInfo.getBranchename() + "----------   " + companyInfo.getBranchname() + "-----------    " + companyInfo.getInfono() + "------------    " + companyInfo.getCorpname() + "--------------    " + companyInfo.getCorpename() + "--------------    " + companyInfo.getAddress());
                     page = page.getAnchorByText("返回上頁").click();
-                    System.out.println(page.getBaseURL().toString());
+                    return true;
                 } catch (Exception e1) {
                     return false;
                 }
@@ -119,7 +114,7 @@ public class Test {
 
     public boolean search(CompanyInfo companyInfo) {
         try {
-            page.getElementByName("companyName").setAttribute("value", companyInfo.getName());
+            page.getElementByName("companyName").setAttribute("value", companyInfo.getEnname());
             ((HtmlSelect) page.getElementByName("businessAddArea")).getOptionByValue("").click();
             ((HtmlSelect) page.getElementByName("businessAddArea")).getOptionByValue("A").click();
             final HtmlImage[] valiCodeImg = {null};
@@ -157,8 +152,10 @@ public class Test {
         webClient.waitForBackgroundJavaScript(3000);
         webClient.setAjaxController(new NicelyResynchronizingAjaxController());
         try {
-            page = webClient.getPage("https://www.gov.hk/sc/apps/irdbrnenquiry.htm");
+            page = webClient.getPage("https://www.gov.hk/sc/residents/taxes/etax/services/brn_enquiry.htm");
             System.out.println(page.getBaseURL().toString());
+            page = page.getAnchorByHref("/sc/apps/irdbrnenquiry.htm").click();
+            Thread.sleep(10000);
             page = page.getElementsByTagName("input").get(0).click();
             System.out.println(page.getBaseURL().toString());
             page = page.getAnchorByText("開始使用服務").click();

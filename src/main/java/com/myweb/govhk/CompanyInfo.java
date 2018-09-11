@@ -2,11 +2,11 @@ package com.myweb.govhk;
 
 public class CompanyInfo {
     private String no;
-    private String name;
+    private String enname;
     private String address;
     private String infono;
     private String corpname;
-    private String cortename;
+    private String corpename;
     private String branchname;
     private String branchename;
 
@@ -18,12 +18,12 @@ public class CompanyInfo {
         this.no = no;
     }
 
-    public String getName() {
-        return name;
+    public String getEnname() {
+        return enname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEnname(String enname) {
+        this.enname = enname;
     }
 
     public String getAddress() {
@@ -50,12 +50,12 @@ public class CompanyInfo {
         this.corpname = corpname;
     }
 
-    public String getCortename() {
-        return cortename;
+    public String getCorpename() {
+        return corpename;
     }
 
-    public void setCortename(String cortename) {
-        this.cortename = cortename;
+    public void setCorpename(String corpename) {
+        this.corpename = corpename;
     }
 
     public String getBranchname() {
