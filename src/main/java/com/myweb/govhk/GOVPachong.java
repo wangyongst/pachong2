@@ -11,16 +11,17 @@ import net.sourceforge.tess4j.Tesseract;
 import javax.imageio.ImageReader;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 
-public class Test {
+public class GOVPachong {
 
     public WebClient webClient = new WebClient(BrowserVersion.CHROME);
     public HtmlPage page = null;
 
     public static void main(String[] args) {
-        Test test = new Test();
+        GOVPachong test = new GOVPachong();
         while (test.page == null) {
             while (!test.initPage()) ;
         }
@@ -65,9 +66,30 @@ public class Test {
                 System.out.println(e.getTextContent().trim().replaceAll(" {2,}", " "));
                 companyInfo.setAddress(e.getTextContent().trim().replaceAll(" {2,}", " "));
                 System.out.println(companyInfo.getEnname() + "--------------    " + companyInfo.getAddress());
+                try {
+                    if(JDBCUtil.isExsit(companyInfo) == null){
+                        JDBCUtil.insert(companyInfo);
+                        clear(companyInfo);
+                    }
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                    return false;
+                }
             }
         }
         return true;
+    }
+
+    public CompanyInfo getCompany(){
+        CompanyInfo companyInfo = new CompanyInfo();
+        try {
+            Company company = JDBCUtil.select();
+            companyInfo.setNo(company.getNo());
+            companyInfo.setEnname(company.getEnname());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return companyInfo;
     }
 
 
@@ -101,6 +123,8 @@ public class Test {
                         }
                     }
                     System.out.println(companyInfo.getEnname() + "----------   " + companyInfo.getBranchename() + "----------   " + companyInfo.getBranchname() + "-----------    " + companyInfo.getInfono() + "------------    " + companyInfo.getCorpname() + "--------------    " + companyInfo.getCorpename() + "--------------    " + companyInfo.getAddress());
+                    JDBCUtil.insert(companyInfo);
+                    clear(companyInfo);
                     page = page.getAnchorByText("返回上頁").click();
                     return true;
                 } catch (Exception e1) {
@@ -109,6 +133,16 @@ public class Test {
             }
         }
         return true;
+    }
+
+
+    public void clear(CompanyInfo companyInfo){
+        companyInfo.setInfono(null);
+        companyInfo.setAddress(null);
+        companyInfo.setBranchename(null);
+        companyInfo.setBranchname(null);
+        companyInfo.setCorpename(null);
+        companyInfo.setCorpname(null);
     }
 
 
@@ -137,6 +171,7 @@ public class Test {
 
     public static String getCode(BufferedImage bufferedImage) throws Exception {
         ITesseract instance = new Tesseract();
+        instance.setDatapath("/root/pachong2-1.0-SNAPSHOT");
         BufferedImage textImage = ClearImageHelper.cleanImage(bufferedImage);
         return instance.doOCR(textImage).trim();
     }
