@@ -47,10 +47,12 @@ public class GOVPachong {
             try {
                 page = page.getAnchorByText("重新查詢").click();
             } catch (Exception e1) {
+                e1.printStackTrace();
                 return false;
             }
             System.out.println(page.getBaseURL().toString());
         } catch (IOException e) {
+            e.printStackTrace();
             return false;
         }
         return true;
@@ -104,7 +106,10 @@ public class GOVPachong {
                     HtmlAnchor anchor = (HtmlAnchor) e.getElementsByTagName("a").get(0);
                     companyInfo.setAddress(anchor.getTextContent().trim().replaceAll(" {2,}", " "));
                     page = (HtmlPage) page.executeJavaScript(anchor.getOnClickAttribute()).getNewPage();
-                    if (page.getElementsById("cont_table").size() < 3) return false;
+                    if (page.getElementsById("cont_table").size() < 3) {
+                        System.out.println("数据不对，出错了");
+                        return false;
+                    }
                     table = page.getElementsById("cont_table").get(2);
                     List<HtmlElement> trs = table.getElementsByTagName("tr");
                     for (HtmlElement n : trs) {
@@ -128,6 +133,7 @@ public class GOVPachong {
                     page = page.getAnchorByText("返回上頁").click();
                     return true;
                 } catch (Exception e1) {
+                    e1.printStackTrace();
                     return false;
                 }
             }
