@@ -46,7 +46,9 @@ public class GOVPachong {
         } catch (ElementNotFoundException e) {
             try {
                 page = page.getAnchorByText("重新查詢").click();
-            } catch (Exception e1) {
+            } catch (ElementNotFoundException e1) {
+                return true;
+            } catch (IOException e1) {
                 e1.printStackTrace();
                 return false;
             }
@@ -69,7 +71,7 @@ public class GOVPachong {
                 companyInfo.setAddress(e.getTextContent().trim().replaceAll(" {2,}", " "));
                 System.out.println(companyInfo.getEnname() + "--------------    " + companyInfo.getAddress());
                 try {
-                    if(JDBCUtil.isExsit(companyInfo) == null){
+                    if (JDBCUtil.isExsit(companyInfo) == null) {
                         JDBCUtil.insert(companyInfo);
                         clear(companyInfo);
                     }
@@ -82,7 +84,7 @@ public class GOVPachong {
         return true;
     }
 
-    public CompanyInfo getCompany(){
+    public CompanyInfo getCompany() {
         CompanyInfo companyInfo = new CompanyInfo();
         try {
             Company company = JDBCUtil.select();
@@ -142,7 +144,7 @@ public class GOVPachong {
     }
 
 
-    public void clear(CompanyInfo companyInfo){
+    public void clear(CompanyInfo companyInfo) {
         companyInfo.setInfono(null);
         companyInfo.setAddress(null);
         companyInfo.setBranchename(null);
